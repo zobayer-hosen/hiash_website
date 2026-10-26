@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "rose" | "outline" | "light" | "ghost";
+type Variant = "primary" | "rose" | "outline" | "light" | "ghost" | "gold" | "outlineLight";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -14,6 +14,8 @@ const variants: Record<Variant, string> = {
   outline: "border border-ink/80 text-ink hover:bg-ink hover:text-cream",
   light: "bg-cream text-ink hover:bg-rose-100",
   ghost: "text-ink hover:text-rose-600",
+  gold: "bg-gold text-ink shadow-[0_12px_30px_-12px_rgba(196,160,106,0.7)] hover:bg-gold-light",
+  outlineLight: "border border-cream/40 text-cream hover:border-cream hover:bg-cream hover:text-ink",
 };
 
 const sizes: Record<Size, string> = {

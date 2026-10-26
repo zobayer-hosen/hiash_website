@@ -1,8 +1,9 @@
 "use client";
 
+import { AnimatePresence, m } from "framer-motion";
 import { useId, useState } from "react";
 import { Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { EASE_LUXE } from "@/components/motion/variants";
 
 export function AccordionItem({
   title,
@@ -23,14 +24,28 @@ export function AccordionItem({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-controls={id}
-        className="flex w-full items-center justify-between py-5 text-left font-medium"
+        className="flex w-full items-center justify-between py-5 text-left font-medium transition-colors hover:text-rose-600"
       >
         {title}
-        <Plus className={cn("size-4 transition-transform duration-300", open && "rotate-45")} aria-hidden />
+        <m.span animate={{ rotate: open ? 45 : 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+          <Plus className="size-4" aria-hidden />
+        </m.span>
       </button>
-      <div id={id} className={cn("grid transition-all duration-500 ease-[var(--ease-luxe)]", open ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]")}>
-        <div className="overflow-hidden text-sm leading-relaxed text-taupe">{children}</div>
-      </div>
+      <AnimatePresence initial={false}>
+        {open && (
+          <m.div
+            id={id}
+            key="content"
+            className="overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.45, ease: EASE_LUXE }}
+          >
+            <div className="pb-5 text-sm leading-relaxed text-taupe">{children}</div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

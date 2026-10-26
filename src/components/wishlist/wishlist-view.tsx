@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 import { getProductById } from "@/data/products";
 import { useShop } from "@/store/shop-store";
 import { ButtonLink } from "@/components/ui/button";
-import { ProductCard } from "@/components/product/product-card";
+import { AnimatedProductGrid } from "@/components/product/animated-grid";
 
 export function WishlistView() {
   const { wishlist } = useShop();
@@ -33,11 +33,7 @@ export function WishlistView() {
       <p className="mb-8 text-sm text-taupe">
         {saved.length} saved {saved.length === 1 ? "piece" : "pieces"}
       </p>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-5">
-        {saved.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <AnimatedProductGrid products={saved} />
     </>
   );
 }

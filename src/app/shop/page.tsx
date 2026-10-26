@@ -7,7 +7,7 @@ import { ShopView } from "@/components/shop/shop-view";
 
 export const metadata: Metadata = {
   title: "Shop all",
-  description: "Shop handwoven sarees, heels and sandals, bags, jewellery and clean beauty at Hiash.",
+  description: "Shop bridal lehengas, sherwanis, wedding shoes, bags, jewellery and clean beauty at Hiash.",
 };
 
 export default function ShopPage() {
@@ -24,9 +24,9 @@ export default function ShopPage() {
             Everything, <em className="text-rose-500 italic">beautifully</em> curated
           </>
         }
-        description="Sarees, shoes, accessories and beauty — chosen in small runs and finished with care."
-        image={pexels(28943601)}
-        imageAlt="Woman in a vibrant saree with gold jewellery"
+        description="Wedding couture, shoes, accessories and beauty — chosen in small runs and finished with care."
+        image={pexels(16709635)}
+        imageAlt="Bride and groom in traditional Bangladeshi wedding attire"
       />
       <Suspense fallback={<ListingSkeleton />}>
         <ShopView />

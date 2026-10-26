@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Hiash",
   tagline: "Elevate Every Moment",
   description:
-    "Hiash is a curated boutique for handwoven sarees, statement shoes, fine accessories and clean beauty — made to elevate every moment.",
+    "Hiash is a Dhaka boutique for bridal and groom wedding couture, statement shoes, fine accessories and clean beauty — made to elevate every moment.",
   currency: {
     code: "BDT",
     symbol: "৳",

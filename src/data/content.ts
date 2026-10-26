@@ -4,7 +4,7 @@ import { pexels } from "@/lib/utils";
 export const announcements = [
   "Free delivery across Bangladesh on orders over ৳5,000",
   "Cash on delivery · bKash · Nagad · Cards accepted",
-  "New: The Festive Saree Edit has arrived",
+  "New: The Wedding Edit 2026 — bridal & groom couture has arrived",
 ];
 
 export type MegaMenu = {
@@ -16,35 +16,35 @@ export type MegaMenu = {
 
 export const mainNav: MegaMenu[] = [
   {
-    label: "Sarees",
-    href: "/collections/sarees",
+    label: "Wedding",
+    href: "/collections/wedding",
     groups: [
       {
-        title: "By weave",
+        title: "For the bride",
         links: [
-          { label: "Dhakai Jamdani", href: "/collections/sarees?type=Jamdani" },
-          { label: "Banarasi", href: "/collections/sarees?type=Banarasi" },
-          { label: "Katan", href: "/collections/sarees?type=Katan" },
-          { label: "Pure Silk", href: "/collections/sarees?type=Silk" },
-          { label: "Muslin", href: "/collections/sarees?type=Muslin" },
-          { label: "Tant Cotton", href: "/collections/sarees?type=Tant" },
+          { label: "Bridal lehenga", href: "/collections/wedding?type=Bridal+Lehenga" },
+          { label: "Reception & bou bhaat", href: "/collections/wedding?type=Reception" },
+          { label: "Holud & mehndi", href: "/collections/wedding?type=Holud+%26+Mehndi" },
+          { label: "Bridal jewellery", href: "/collections/accessories?type=Jewellery" },
+          { label: "Bridal shoes", href: "/collections/shoes?type=Flats" },
         ],
       },
       {
-        title: "Occasion",
+        title: "For the groom",
         links: [
-          { label: "Bridal", href: "/collections/sarees?q=bridal" },
-          { label: "Festive", href: "/collections/sarees" },
-          { label: "Everyday", href: "/collections/sarees?type=Tant" },
-          { label: "New arrivals", href: "/shop?tag=new" },
+          { label: "Sherwani", href: "/collections/wedding?type=Sherwani" },
+          { label: "Panjabi", href: "/collections/wedding?type=Panjabi" },
+          { label: "Jodhpuri", href: "/collections/wedding?type=Jodhpuri" },
+          { label: "Pagri & khussa set", href: "/collections/wedding?type=Groom+Accessories" },
+          { label: "Groom's khussa", href: "/collections/shoes?type=Khussa" },
         ],
       },
     ],
     feature: {
-      title: "The Festive Edit",
-      caption: "Katan, Banarasi & tissue silks",
-      href: "/collections/sarees",
-      image: pexels(28943474),
+      title: "The Wedding Edit",
+      caption: "Bride & groom couture, 2026",
+      href: "/collections/wedding",
+      image: pexels(28293024),
     },
   },
   {
@@ -57,6 +57,7 @@ export const mainNav: MegaMenu[] = [
           { label: "Heels", href: "/collections/shoes?type=Heels" },
           { label: "Sandals", href: "/collections/shoes?type=Sandals" },
           { label: "Flats & Loafers", href: "/collections/shoes?type=Flats" },
+          { label: "Wedding khussa", href: "/collections/shoes?type=Khussa" },
           { label: "Sneakers", href: "/collections/shoes?type=Sneakers" },
         ],
       },
@@ -137,13 +138,13 @@ export const mainNav: MegaMenu[] = [
 ];
 
 export const marqueeItems = [
-  "Dhakai Jamdani",
-  "Banarasi Silk",
-  "Katan",
-  "Handcrafted Heels",
-  "Temple Jewellery",
-  "Clean Beauty",
-  "Leather Bags",
+  "Bridal Lehenga",
+  "Royal Sherwani",
+  "Gaye Holud",
+  "Kundan Jewellery",
+  "Groom's Khussa",
+  "Bridal Beauty",
+  "Bou Bhaat",
   "Signature Fragrance",
 ];
 
@@ -173,27 +174,27 @@ export const perks = [
 export const testimonials = [
   {
     quote:
-      "My Banarasi from Hiash was the most complimented thing at my sister's wedding. The weave is even richer in person, and it arrived beautifully packed within two days.",
+      "My Rani Red lehenga from Hiash was everything I dreamed of. The zardozi is even richer in person, and the fitting at the Gulshan studio made it feel like it was sewn on me.",
     name: "Nusrat J.",
     location: "Dhanmondi, Dhaka",
-    product: "Rangoli Banarasi Silk Saree",
-    image: pexels(20507062),
+    product: "Rani Red Bridal Lehenga",
+    image: pexels(12791932),
   },
   {
     quote:
-      "I wore the Mocha block heels for an entire reception night and my feet didn't hurt once. Elegant and genuinely comfortable — I've already ordered a second colour.",
-    name: "Tahmina R.",
+      "We styled both our outfits with Hiash — my lehenga and his Maharaja sherwani coordinated perfectly. Every guest asked where we found them.",
+    name: "Tahmina & Rafiq",
     location: "Chattogram",
-    product: "Mocha Block Heel Sandals",
-    image: pexels(36322504),
+    product: "Maharaja Red Sherwani",
+    image: pexels(28113694),
   },
   {
     quote:
-      "The Rose Glow Serum has become a non-negotiable in my routine. Lightweight, no fragrance and my skin looks brighter after just three weeks.",
+      "The Rose Glow Serum got my skin wedding-ready. Lightweight, no fragrance, and my makeup artist said my skin looked like silk on the big day.",
     name: "Farhana K.",
     location: "Sylhet",
     product: "Rose Glow Serum",
-    image: pexels(28284556),
+    image: pexels(5468699),
   },
 ];
 
@@ -209,31 +210,31 @@ export type JournalPost = {
 
 export const journalPosts: JournalPost[] = [
   {
-    slug: "how-to-drape-a-jamdani",
-    category: "Saree Stories",
+    slug: "planning-your-wedding-wardrobe",
+    category: "Wedding Stories",
     date: "Oct 18, 2026",
-    title: "How to drape a Jamdani like a pro in six simple steps",
-    excerpt: "Pleats that stay put, a pallu that falls just right — our stylists share their go-to technique.",
-    image: pexels(7920055),
+    title: "From gaye holud to bou bhaat: planning your wedding wardrobe",
+    excerpt: "Five events, two families, one cohesive story — our stylists share how to plan every look, for bride and groom.",
+    image: pexels(31957458),
     body: [
       {
-        text: "Jamdani is featherlight and slightly crisp, which makes it forgiving to pleat but quick to slip. A few small habits make all the difference between a drape that holds all evening and one that needs constant fixing.",
+        text: "A Bangladeshi wedding is not one day but a season — the gaye holud, the mehndi, the akdh, the biye and the bou bhaat. Each deserves its own look, yet the best wardrobes feel like chapters of the same story.",
       },
       {
-        heading: "1. Start with the right base",
-        text: "Wear a fitted petticoat that matches the body colour and tie it firmly at the waist. Choose your heels before you drape — the hem should just graze the floor in the shoes you'll wear.",
+        heading: "1. Start with the biye",
+        text: "Choose the bridal lehenga and the groom's sherwani first, ideally three to four months ahead. Everything else — colours, jewellery, even the décor — can take its cue from this pairing.",
       },
       {
-        heading: "2. Tuck, wrap and measure the pallu",
-        text: "Tuck the plain end in at the right of your navel and wrap once around. Bring the pallu over your left shoulder so it falls to the back of your knee, then pin it at the shoulder.",
+        heading: "2. Let the holud be joyful",
+        text: "Marigold, turmeric and leaf green are classics for a reason. Opt for lighter fabrics like chanderi and cotton silk, mirror work instead of heavy zardozi, and a panjabi the groom can actually dance in.",
       },
       {
-        heading: "3. Pleat with your fingers, not your palm",
-        text: "Make five to seven pleats of about five inches each, using your thumb and index finger. Line up the border edges, secure them with a small safety pin, then tuck them in slightly to the left of your navel.",
+        heading: "3. Coordinate, don't match",
+        text: "Couples look most elegant when their outfits share a palette rather than an identical colour — think ivory sherwani with a blush lehenga, or antique gold with deep ruby.",
       },
       {
-        heading: "4. Finish and steam",
-        text: "Smooth the drape over your hip, adjust the pallu pleats and give the whole saree a quick shot of steam from a distance. Jamdani loves a gentle steam — never press directly over the motifs.",
+        heading: "4. Leave time for fittings",
+        text: "Book your first fitting six weeks before the wedding and a final one ten days out. Our Gulshan studio offers complimentary bespoke fittings for every Hiash bride and groom.",
       },
     ],
   },
@@ -263,47 +264,47 @@ export const journalPosts: JournalPost[] = [
     ],
   },
   {
-    slug: "heels-for-every-saree",
+    slug: "shoes-for-every-wedding-look",
     category: "Style Guide",
     date: "Sep 27, 2026",
-    title: "Finding the right heel for every saree in your wardrobe",
-    excerpt: "From silk to cotton tant — the heel height, shape and shade that complete each drape.",
+    title: "Finding the right shoes for every wedding look",
+    excerpt: "From embroidered khussa to crystal flats — the height, shape and shade that complete each outfit.",
     image: pexels(31450735),
     body: [
       {
-        text: "Heels change how a saree falls, how you walk in it and how the whole look photographs. The right pair is less about trend and more about fabric, weight and the length of your night.",
+        text: "Shoes change how a lehenga falls, how you walk in it and how the whole look photographs. The right pair is less about trend and more about fabric, weight and the length of your night.",
       },
       {
-        heading: "Heavy silks and Banarasi",
-        text: "Structured fabrics need stability. A 6–8 cm block heel keeps the hem lifted and gives you confidence on stairs and stages. Metallic gold or nude tones disappear under the drape and lengthen the leg.",
+        heading: "Heavy bridal lehengas",
+        text: "Structured skirts need stability. A 6 cm block heel or an embellished flat keeps the hem lifted and gives you confidence on stairs and stages. Gold or nude tones disappear under the skirt and lengthen the leg.",
       },
       {
-        heading: "Jamdani, muslin and chiffon",
-        text: "Light fabrics move beautifully with a slimmer heel. A pointed pump or strappy sandal adds polish without overpowering the delicate weave.",
+        heading: "Reception and bou bhaat",
+        text: "Lighter net and georgette move beautifully with a slimmer heel. A pointed pump or strappy sandal adds polish without overpowering the embroidery.",
       },
       {
-        heading: "Cotton and everyday tant",
-        text: "Comfort wins. Flat sandals, loafers or even clean white sneakers make cotton sarees feel modern and wearable all day.",
+        heading: "For the groom",
+        text: "A hand-embroidered khussa is the classic partner for any sherwani or panjabi. Match the embroidery to the zardozi, and break them in at home a week before the wedding.",
       },
     ],
   },
 ];
 
 export const lookbookPortraits = [
-  pexels(28943601),
-  pexels(8070398),
-  pexels(9429420),
-  pexels(36951580),
-  pexels(27408060),
-  pexels(28284556),
-  pexels(4456729),
+  pexels(12791932),
+  pexels(28497003),
+  pexels(30184702),
+  pexels(31957455),
+  pexels(35542193),
+  pexels(12411105),
+  pexels(28293006),
 ];
 
 export const footerLinks: { title: string; links: NavLink[] }[] = [
   {
     title: "Shop",
     links: [
-      { label: "Sarees", href: "/collections/sarees" },
+      { label: "Wedding", href: "/collections/wedding" },
       { label: "Shoes", href: "/collections/shoes" },
       { label: "Accessories", href: "/collections/accessories" },
       { label: "Beauty", href: "/collections/beauty" },

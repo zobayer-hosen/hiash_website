@@ -1,4 +1,4 @@
-export type CategorySlug = "sarees" | "shoes" | "accessories" | "beauty";
+export type CategorySlug = "wedding" | "shoes" | "accessories" | "beauty";
 
 export type ProductTag = "new" | "bestseller" | "flash" | "edit";
 
@@ -12,9 +12,9 @@ export interface Product {
   slug: string;
   name: string;
   category: CategorySlug;
-  /** Sub-category shown in filters and breadcrumbs, e.g. "Jamdani", "Heels". */
+  /** Sub-category shown in filters and breadcrumbs, e.g. "Sherwani", "Heels". */
   type: string;
-  /** Short line under the name on cards, e.g. "Pure silk · Saffron". */
+  /** Short line under the name on cards, e.g. "Raw silk · Rani red". */
   subtitle: string;
   price: number;
   compareAt?: number;

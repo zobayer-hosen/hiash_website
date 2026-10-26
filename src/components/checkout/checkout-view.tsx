@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, m } from "framer-motion";
 import { useState } from "react";
-import { Banknote, CircleCheck, CreditCard, Lock, Smartphone } from "lucide-react";
+import { Banknote, CreditCard, Lock, Smartphone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { cartTotals, resolveCartLines, type ShippingMethod } from "@/lib/cart";
 import { cn, formatPrice } from "@/lib/utils";
@@ -11,6 +12,7 @@ import { shopActions, useShop } from "@/store/shop-store";
 import { ButtonLink } from "@/components/ui/button";
 import { PromoForm } from "@/components/cart/promo-form";
 import { SummaryRows } from "@/components/cart/summary-rows";
+import { EASE_LUXE, fadeUp, stagger } from "@/components/motion/variants";
 import { Field, fieldClasses } from "./field";
 
 const divisions = ["Dhaka", "Chattogram", "Sylhet", "Rajshahi", "Khulna", "Barishal", "Rangpur", "Mymensingh"];
@@ -50,7 +52,8 @@ type Errors = Partial<Record<keyof FormState, string>>;
 function validate(form: FormState, payment: Payment): Errors {
   const errors: Errors = {};
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errors.email = "Enter a valid email address.";
-  if (!/^(\+?880)?0?1[3-9]\d{8}$/.test(form.phone.replace(/[\s-]/g, ""))) errors.phone = "Enter a valid Bangladeshi mobile number.";
+  if (!/^(\+?880)?0?1[3-9]\d{8}$/.test(form.phone.replace(/[\s-]/g, "")))
+    errors.phone = "Enter a valid Bangladeshi mobile number.";
   if (!form.firstName.trim()) errors.firstName = "First name is required.";
   if (!form.lastName.trim()) errors.lastName = "Last name is required.";
   if (form.address.trim().length < 6) errors.address = "Enter your full street address.";
@@ -114,16 +117,49 @@ export function CheckoutView() {
 
   if (order) {
     return (
-      <div className="mx-auto max-w-xl py-10 text-center">
-        <span className="mx-auto grid size-20 place-items-center rounded-full bg-sage-100 text-sage-700">
-          <CircleCheck className="size-9" aria-hidden />
-        </span>
-        <h2 className="mt-6 font-display text-5xl font-medium">Thank you, {order.name}!</h2>
-        <p className="mt-4 text-taupe">
-          Your order <strong className="font-semibold text-ink">{order.id}</strong> is confirmed. We&rsquo;ll send updates to your phone and
-          email as it&rsquo;s packed and shipped to {order.city}.
-        </p>
-        <div className="mx-auto mt-8 grid max-w-sm grid-cols-2 gap-px overflow-hidden border border-sand-dark bg-sand-dark text-left text-sm">
+      <m.div className="mx-auto max-w-xl py-10 text-center" variants={stagger(0.12)} initial="hidden" animate="show">
+        <m.span
+          className="mx-auto grid size-24 place-items-center rounded-full bg-sage-100 text-sage-700"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 16 }}
+        >
+          <svg viewBox="0 0 52 52" className="size-12" aria-hidden>
+            <m.circle
+              cx="26"
+              cy="26"
+              r="23"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: EASE_LUXE }}
+            />
+            <m.path
+              d="M15 27l7 7 15-16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.5, delay: 0.75, ease: EASE_LUXE }}
+            />
+          </svg>
+        </m.span>
+        <m.h2 variants={fadeUp} className="mt-6 font-display text-5xl font-medium">
+          Thank you, {order.name}!
+        </m.h2>
+        <m.p variants={fadeUp} className="mt-4 text-taupe">
+          Your order <strong className="font-semibold text-ink">{order.id}</strong> is confirmed. We&rsquo;ll send updates to your
+          phone and email as it&rsquo;s packed and shipped to {order.city}.
+        </m.p>
+        <m.div
+          variants={fadeUp}
+          className="mx-auto mt-8 grid max-w-sm grid-cols-2 gap-px overflow-hidden border border-sand-dark bg-sand-dark text-left text-sm"
+        >
           <div className="bg-white p-4">
             <p className="text-xs tracking-[0.16em] text-taupe uppercase">Order total</p>
             <p className="mt-1 font-display text-2xl font-semibold lining-nums">{formatPrice(order.total)}</p>
@@ -132,29 +168,43 @@ export function CheckoutView() {
             <p className="text-xs tracking-[0.16em] text-taupe uppercase">Payment</p>
             <p className="mt-1 font-medium">{paymentOptions.find((p) => p.value === payment)?.label}</p>
           </div>
-        </div>
-        <ButtonLink href="/shop" className="mt-10">
-          Continue shopping
-        </ButtonLink>
-      </div>
+        </m.div>
+        <m.div variants={fadeUp}>
+          <ButtonLink href="/shop" className="mt-10">
+            Continue shopping
+          </ButtonLink>
+        </m.div>
+      </m.div>
     );
   }
 
   if (lines.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-5 bg-white px-6 py-20 text-center">
+      <m.div
+        className="flex flex-col items-center gap-5 bg-white px-6 py-20 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <p className="font-display text-4xl">Your bag is empty</p>
         <p className="text-taupe">Add a few favourites before checking out.</p>
         <ButtonLink href="/shop">Browse the shop</ButtonLink>
-      </div>
+      </m.div>
     );
   }
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_420px] lg:gap-14">
-      <form id="checkout-form" onSubmit={onSubmit} noValidate className="space-y-10">
+      <m.form
+        id="checkout-form"
+        onSubmit={onSubmit}
+        noValidate
+        className="space-y-10"
+        variants={stagger(0.1)}
+        initial="hidden"
+        animate="show"
+      >
         {/* 1. Contact */}
-        <section aria-labelledby="step-contact">
+        <m.section variants={fadeUp} aria-labelledby="step-contact">
           <h2 id="step-contact" className="flex items-center gap-3 font-display text-2xl font-semibold">
             <span className="grid size-7 place-items-center rounded-full bg-ink text-xs text-cream">1</span> Contact
           </h2>
@@ -167,13 +217,18 @@ export function CheckoutView() {
             </Field>
           </div>
           <label className="mt-4 flex items-center gap-3 text-sm text-taupe">
-            <input type="checkbox" checked={subscribe} onChange={(event) => setSubscribe(event.target.checked)} className="size-4 accent-ink" />
+            <input
+              type="checkbox"
+              checked={subscribe}
+              onChange={(event) => setSubscribe(event.target.checked)}
+              className="size-4 accent-ink"
+            />
             Email me about new arrivals and members-only offers
           </label>
-        </section>
+        </m.section>
 
         {/* 2. Address */}
-        <section aria-labelledby="step-address" className="border-t border-sand-dark pt-10">
+        <m.section variants={fadeUp} aria-labelledby="step-address" className="border-t border-sand-dark pt-10">
           <h2 id="step-address" className="flex items-center gap-3 font-display text-2xl font-semibold">
             <span className="grid size-7 place-items-center rounded-full bg-ink text-xs text-cream">2</span> Shipping address
           </h2>
@@ -191,7 +246,12 @@ export function CheckoutView() {
               {input("area", { placeholder: "e.g. Dhanmondi" })}
             </Field>
             <Field id="city" label="Division">
-              <select id="city" value={form.city} onChange={(event) => update("city", event.target.value)} className={fieldClasses()}>
+              <select
+                id="city"
+                value={form.city}
+                onChange={(event) => update("city", event.target.value)}
+                className={fieldClasses()}
+              >
                 {divisions.map((division) => (
                   <option key={division}>{division}</option>
                 ))}
@@ -204,10 +264,10 @@ export function CheckoutView() {
               <input id="country" value="Bangladesh" readOnly className={cn(fieldClasses(), "bg-sand text-taupe")} />
             </Field>
           </div>
-        </section>
+        </m.section>
 
         {/* 3. Delivery */}
-        <section aria-labelledby="step-delivery" className="border-t border-sand-dark pt-10">
+        <m.section variants={fadeUp} aria-labelledby="step-delivery" className="border-t border-sand-dark pt-10">
           <h2 id="step-delivery" className="flex items-center gap-3 font-display text-2xl font-semibold">
             <span className="grid size-7 place-items-center rounded-full bg-ink text-xs text-cream">3</span> Delivery method
           </h2>
@@ -244,10 +304,10 @@ export function CheckoutView() {
               );
             })}
           </div>
-        </section>
+        </m.section>
 
         {/* 4. Payment */}
-        <section aria-labelledby="step-payment" className="border-t border-sand-dark pt-10">
+        <m.section variants={fadeUp} aria-labelledby="step-payment" className="border-t border-sand-dark pt-10">
           <div className="flex items-center justify-between">
             <h2 id="step-payment" className="flex items-center gap-3 font-display text-2xl font-semibold">
               <span className="grid size-7 place-items-center rounded-full bg-ink text-xs text-cream">4</span> Payment
@@ -280,24 +340,40 @@ export function CheckoutView() {
           </div>
           <p className="mt-3 text-sm text-taupe">{paymentOptions.find((p) => p.value === payment)?.note}</p>
 
-          {payment === "card" && (
-            <div className="mt-5 grid gap-4 bg-white p-5 sm:grid-cols-[2fr_1fr_1fr]">
-              <Field id="cardNumber" label="Card number" error={errors.cardNumber}>
-                {input("cardNumber", { inputMode: "numeric", autoComplete: "cc-number", placeholder: "1234 5678 9012 3456" })}
-              </Field>
-              <Field id="cardExpiry" label="Expiry" error={errors.cardExpiry}>
-                {input("cardExpiry", { autoComplete: "cc-exp", placeholder: "MM / YY" })}
-              </Field>
-              <Field id="cardCvc" label="CVC" error={errors.cardCvc}>
-                {input("cardCvc", { inputMode: "numeric", autoComplete: "cc-csc", placeholder: "123" })}
-              </Field>
-            </div>
-          )}
-        </section>
-      </form>
+          <AnimatePresence initial={false}>
+            {payment === "card" && (
+              <m.div
+                key="card-fields"
+                className="overflow-hidden"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.4, ease: EASE_LUXE }}
+              >
+                <div className="mt-5 grid gap-4 bg-white p-5 sm:grid-cols-[2fr_1fr_1fr]">
+                  <Field id="cardNumber" label="Card number" error={errors.cardNumber}>
+                    {input("cardNumber", { inputMode: "numeric", autoComplete: "cc-number", placeholder: "1234 5678 9012 3456" })}
+                  </Field>
+                  <Field id="cardExpiry" label="Expiry" error={errors.cardExpiry}>
+                    {input("cardExpiry", { autoComplete: "cc-exp", placeholder: "MM / YY" })}
+                  </Field>
+                  <Field id="cardCvc" label="CVC" error={errors.cardCvc}>
+                    {input("cardCvc", { inputMode: "numeric", autoComplete: "cc-csc", placeholder: "123" })}
+                  </Field>
+                </div>
+              </m.div>
+            )}
+          </AnimatePresence>
+        </m.section>
+      </m.form>
 
       {/* Summary */}
-      <aside className="lg:sticky lg:top-28 lg:self-start">
+      <m.aside
+        className="lg:sticky lg:top-28 lg:self-start"
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: EASE_LUXE }}
+      >
         <div className="border border-sand-dark bg-white p-6 sm:p-7">
           <p className="text-xs font-medium tracking-[0.24em] uppercase">Order summary</p>
           <ul className="mt-5 divide-y divide-sand-dark">
@@ -351,7 +427,7 @@ export function CheckoutView() {
             Packed by hand at our Dhaka studio and shipped within 1–2 business days. Questions? Call {siteConfig.contact.phone}.
           </p>
         </div>
-      </aside>
+      </m.aside>
     </div>
   );
 }

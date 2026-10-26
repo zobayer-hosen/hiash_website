@@ -1,6 +1,9 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MaskLines } from "@/components/motion/mask-lines";
+import { Reveal } from "@/components/motion/reveal";
 
 export function SectionHeading({
   eyebrow,
@@ -29,32 +32,40 @@ export function SectionHeading({
       )}
     >
       <div className={cn("max-w-2xl", centered && "mx-auto")}>
-        {eyebrow && <p className={cn("eyebrow mb-3", tone === "light" && "text-rose-200")}>{eyebrow}</p>}
+        {eyebrow && (
+          <Reveal y={12}>
+            <p className={cn("eyebrow mb-3", tone === "light" && "text-rose-200")}>{eyebrow}</p>
+          </Reveal>
+        )}
         <h2
           className={cn(
             "font-display text-4xl leading-[1.05] font-medium tracking-tight text-balance sm:text-5xl",
             tone === "light" ? "text-cream" : "text-ink",
           )}
         >
-          {title}
+          <MaskLines lines={[<Fragment key="title">{title}</Fragment>]} delay={0.08} />
         </h2>
         {description && (
-          <p className={cn("mt-4 text-base leading-relaxed text-pretty", tone === "light" ? "text-cream/75" : "text-taupe")}>
-            {description}
-          </p>
+          <Reveal delay={180} y={16}>
+            <p className={cn("mt-4 text-base leading-relaxed text-pretty", tone === "light" ? "text-cream/75" : "text-taupe")}>
+              {description}
+            </p>
+          </Reveal>
         )}
       </div>
       {action && (
-        <Link
-          href={action.href}
-          className={cn(
-            "group inline-flex shrink-0 items-center gap-2 text-sm font-medium tracking-[0.14em] uppercase",
-            tone === "light" ? "text-cream hover:text-rose-200" : "text-ink hover:text-rose-600",
-          )}
-        >
-          {action.label}
-          <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-        </Link>
+        <Reveal delay={200} y={12} className="shrink-0">
+          <Link
+            href={action.href}
+            className={cn(
+              "group inline-flex items-center gap-2 text-sm font-medium tracking-[0.14em] uppercase",
+              tone === "light" ? "text-cream hover:text-rose-200" : "text-ink hover:text-rose-600",
+            )}
+          >
+            {action.label}
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+          </Link>
+        </Reveal>
       )}
     </div>
   );

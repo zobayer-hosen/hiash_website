@@ -3,30 +3,31 @@ import Link from "next/link";
 import type { Product } from "@/types";
 import { getProductBySlug } from "@/data/products";
 import { cn, formatPrice } from "@/lib/utils";
-import { Reveal } from "@/components/ui/reveal";
+import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const layout = [
-  { slug: "saffron-katan-silk-saree", area: "md:row-span-2", aspect: "aspect-[4/5] md:aspect-auto", sizes: "(min-width: 768px) 40vw, 92vw" },
-  { slug: "rose-square-watch", area: "md:row-span-2", aspect: "aspect-[3/4] md:aspect-auto", sizes: "(min-width: 768px) 28vw, 46vw" },
-  { slug: "pearl-strap-heels", area: "", aspect: "aspect-[3/4] md:aspect-auto", sizes: "(min-width: 768px) 28vw, 46vw" },
-  { slug: "blush-ruched-handbag", area: "", aspect: "aspect-[4/5] md:aspect-auto", sizes: "(min-width: 768px) 28vw, 92vw" },
+  { slug: "rani-red-bridal-lehenga", area: "md:row-span-2", aspect: "aspect-[4/5] md:aspect-auto", sizes: "(min-width: 768px) 40vw, 92vw" },
+  { slug: "shahzada-ivory-sherwani", area: "md:row-span-2", aspect: "aspect-[3/4] md:aspect-auto", sizes: "(min-width: 768px) 28vw, 46vw" },
+  { slug: "royal-gold-bridal-set", area: "", aspect: "aspect-[3/4] md:aspect-auto", sizes: "(min-width: 768px) 28vw, 46vw" },
+  { slug: "bridal-crystal-flats", area: "", aspect: "aspect-[4/5] md:aspect-auto", sizes: "(min-width: 768px) 28vw, 92vw" },
 ];
 
-function EditTile({ product, className, aspect, sizes }: { product: Product; className?: string; aspect: string; sizes: string }) {
+function EditTile({ product, aspect, sizes }: { product: Product; aspect: string; sizes: string }) {
   return (
-    <Link href={`/product/${product.slug}`} className={cn("group flex flex-col overflow-hidden bg-white", className)}>
+    <Link href={`/product/${product.slug}`} className="group flex h-full flex-col overflow-hidden bg-white">
       <div className={cn("relative flex-1 overflow-hidden bg-sand", aspect)}>
         <Image
           src={product.images[0]}
           alt={product.name}
           fill
           sizes={sizes}
-          className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-luxe)] group-hover:scale-105"
+          className="object-cover object-top transition-transform duration-[1.4s] ease-[var(--ease-luxe)] group-hover:scale-105"
         />
-        {product.tags.includes("new") && (
+        <span className="absolute inset-0 bg-gradient-to-t from-ink/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {product.badge && (
           <span className="absolute top-4 left-4 bg-ink px-2.5 py-1 text-[0.6rem] font-medium tracking-[0.18em] text-cream uppercase">
-            New
+            {product.badge}
           </span>
         )}
       </div>
@@ -59,19 +60,13 @@ export function WeeklyEdit() {
           }
           action={{ label: "View all", href: "/shop?tag=new" }}
         />
-        <Reveal>
-          <div className="grid grid-cols-2 gap-4 md:h-[760px] md:grid-cols-[1.35fr_1fr_1fr] md:grid-rows-2 lg:gap-5">
-            {tiles.map((tile, index) => (
-              <EditTile
-                key={tile.slug}
-                product={tile.product}
-                aspect={tile.aspect}
-                sizes={tile.sizes}
-                className={cn(tile.area, (index === 0 || index === 3) && "max-md:col-span-2")}
-              />
-            ))}
-          </div>
-        </Reveal>
+        <Stagger gap={0.12} className="grid grid-cols-2 gap-4 md:h-[760px] md:grid-cols-[1.35fr_1fr_1fr] md:grid-rows-2 lg:gap-5">
+          {tiles.map((tile, index) => (
+            <StaggerItem key={tile.slug} className={cn(tile.area, (index === 0 || index === 3) && "max-md:col-span-2")}>
+              <EditTile product={tile.product} aspect={tile.aspect} sizes={tile.sizes} />
+            </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   );

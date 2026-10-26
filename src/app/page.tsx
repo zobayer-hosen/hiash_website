@@ -3,7 +3,7 @@ import { Hero } from "@/components/home/hero";
 import { CategoryCircles } from "@/components/home/category-circles";
 import { Marquee } from "@/components/home/marquee";
 import { WeeklyEdit } from "@/components/home/weekly-edit";
-import { SareeAtelier } from "@/components/home/saree-atelier";
+import { WeddingAtelier } from "@/components/home/wedding-atelier";
 import { CampaignBanner } from "@/components/home/campaign-banner";
 import { FlashSale } from "@/components/home/flash-sale";
 import { BeautyShowcase } from "@/components/home/beauty-showcase";
@@ -22,7 +22,7 @@ export default function HomePage() {
       <CategoryCircles />
       <Marquee />
       <WeeklyEdit />
-      <SareeAtelier />
+      <WeddingAtelier />
       <CampaignBanner />
       <FlashSale />
       <ShoeShowcase />

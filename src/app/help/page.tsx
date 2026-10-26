@@ -15,6 +15,22 @@ const shoeSizes = [
   ["41", "8", "10", "26.5"],
 ];
 
+const groomSizes = [
+  ["38", "38", "17", "40"],
+  ["40", "40", "17.5", "41"],
+  ["42", "42", "18", "42"],
+  ["44", "44", "18.5", "43"],
+  ["46", "46", "19", "44"],
+];
+
+const bridalSizes = [
+  ["XS", "32", "26", "35"],
+  ["S", "34", "28", "37"],
+  ["M", "36", "30", "39"],
+  ["L", "38", "32", "41"],
+  ["XL", "40", "34", "43"],
+];
+
 const bangleSizes = [
   ["2.4", "5.7", "Petite wrists"],
   ["2.6", "6.0", "Most common"],
@@ -23,8 +39,12 @@ const bangleSizes = [
 
 const faqs = [
   {
-    q: "Do sarees come with a blouse piece?",
-    a: "Yes — every saree includes an unstitched 0.8 m blouse piece. In Dhaka we also offer free fall and pico finishing on request; just add a note when you order.",
+    q: "Do you offer bespoke fittings for bridal and groom wear?",
+    a: "Yes — every Hiash lehenga and sherwani includes complimentary measurements and two fittings at our Gulshan studio. Outside Dhaka? We'll guide you through self-measurement over video call and include free alterations within 30 days.",
+  },
+  {
+    q: "How far ahead should we order our wedding outfits?",
+    a: "We recommend ordering couture pieces 10–12 weeks before the wedding, and holud or reception outfits 4–6 weeks ahead. Rush orders are sometimes possible — just ask our style concierge.",
   },
   {
     q: "Can I pay with bKash or Nagad?",
@@ -124,7 +144,55 @@ export default function HelpPage() {
 
         <section id="size-guide" className="scroll-mt-28">
           <h2 className="font-display text-4xl font-medium">Size guide</h2>
-          <h3 className="mt-6 font-display text-2xl font-semibold">Shoes</h3>
+          <h3 className="mt-6 font-display text-2xl font-semibold">Sherwani & panjabi</h3>
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full min-w-[480px] border border-sand-dark text-left text-sm">
+              <thead className="bg-sand">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Size</th>
+                  <th className="px-4 py-3 font-medium">Chest (in)</th>
+                  <th className="px-4 py-3 font-medium">Shoulder (in)</th>
+                  <th className="px-4 py-3 font-medium">Length (in)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sand-dark bg-white">
+                {groomSizes.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, column) => (
+                      <td key={column} className="px-4 py-3 tabular-nums">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <h3 className="mt-10 font-display text-2xl font-semibold">Bridal lehenga</h3>
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full min-w-[480px] border border-sand-dark text-left text-sm">
+              <thead className="bg-sand">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Size</th>
+                  <th className="px-4 py-3 font-medium">Bust (in)</th>
+                  <th className="px-4 py-3 font-medium">Waist (in)</th>
+                  <th className="px-4 py-3 font-medium">Hip (in)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sand-dark bg-white">
+                {bridalSizes.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, column) => (
+                      <td key={column} className="px-4 py-3 tabular-nums">
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <h3 className="mt-10 font-display text-2xl font-semibold">Shoes</h3>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[480px] border border-sand-dark text-left text-sm">
               <thead className="bg-sand">
@@ -138,8 +206,8 @@ export default function HelpPage() {
               <tbody className="divide-y divide-sand-dark bg-white">
                 {shoeSizes.map((row) => (
                   <tr key={row[0]}>
-                    {row.map((cell) => (
-                      <td key={cell} className="px-4 py-3 tabular-nums">
+                    {row.map((cell, column) => (
+                      <td key={column} className="px-4 py-3 tabular-nums">
                         {cell}
                       </td>
                     ))}
@@ -161,8 +229,8 @@ export default function HelpPage() {
               <tbody className="divide-y divide-sand-dark bg-white">
                 {bangleSizes.map((row) => (
                   <tr key={row[0]}>
-                    {row.map((cell) => (
-                      <td key={cell} className="px-4 py-3">
+                    {row.map((cell, column) => (
+                      <td key={column} className="px-4 py-3">
                         {cell}
                       </td>
                     ))}

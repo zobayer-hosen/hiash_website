@@ -5,6 +5,7 @@ import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -32,7 +33,7 @@ const taka = Noto_Sans_Bengali({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} — Sarees, Shoes, Accessories & Beauty`,
+    default: `${siteConfig.name} — Wedding Couture, Shoes, Accessories & Beauty`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -53,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" data-scroll-behavior="smooth" className={`${cormorant.variable} ${jost.variable} ${taka.variable} antialiased`}>
       <head>
         <noscript>
-          <style>{".reveal{opacity:1;transform:none}"}</style>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
         </noscript>
       </head>
       <body className="flex min-h-dvh flex-col">
@@ -63,13 +64,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <AnnouncementBar />
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <CartDrawer />
+        <MotionProvider>
+          <AnnouncementBar />
+          <Header />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <CartDrawer />
+        </MotionProvider>
       </body>
     </html>
   );

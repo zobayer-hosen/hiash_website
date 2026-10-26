@@ -3,14 +3,14 @@ import { pexels } from "@/lib/utils";
 
 export const categories: Category[] = [
   {
-    slug: "sarees",
-    name: "Sarees",
-    tagline: "Woven by hand, worn with heart",
+    slug: "wedding",
+    name: "Wedding",
+    tagline: "Dressed for forever",
     description:
-      "Jamdani, Banarasi, Katan, Tant and silk — handwoven drapes from master weavers, chosen for weddings, festivals and every day in between.",
-    image: pexels(20161456),
-    banner: pexels(36194199),
-    types: ["Jamdani", "Banarasi", "Katan", "Silk", "Muslin", "Tant"],
+      "Bridal lehengas, regal sherwanis, panjabis and the finishing touches — hand-embroidered in Dhaka for every moment from gaye holud to bou bhaat.",
+    image: pexels(12959396),
+    banner: pexels(37189417),
+    types: ["Bridal Lehenga", "Reception", "Holud & Mehndi", "Sherwani", "Jodhpuri", "Panjabi", "Groom Accessories"],
   },
   {
     slug: "shoes",
@@ -20,7 +20,7 @@ export const categories: Category[] = [
       "Heels for the reception, sandals for the mehndi and sneakers for everything after — crafted in soft leathers and made for comfort.",
     image: pexels(36589769),
     banner: pexels(4376757),
-    types: ["Heels", "Sandals", "Flats", "Sneakers"],
+    types: ["Heels", "Sandals", "Flats", "Khussa", "Sneakers"],
   },
   {
     slug: "accessories",
@@ -54,11 +54,11 @@ export function isCategorySlug(slug: string): slug is CategorySlug {
 
 /** Circle shortcuts on the home page — finer-grained than the four main categories. */
 export const categoryShortcuts = [
-  { label: "Sarees", count: "120+ styles", href: "/collections/sarees", image: pexels(20161456) },
+  { label: "Bride", count: "90+ lehengas", href: "/collections/wedding?type=Bridal+Lehenga", image: pexels(12655181) },
+  { label: "Groom", count: "70+ sherwanis", href: "/collections/wedding?type=Sherwani", image: pexels(28332659) },
   { label: "Heels", count: "60+ styles", href: "/collections/shoes?type=Heels", image: pexels(27204295) },
-  { label: "Sandals", count: "45+ styles", href: "/collections/shoes?type=Sandals", image: pexels(36589769) },
   { label: "Bags", count: "80+ styles", href: "/collections/accessories?type=Bags", image: pexels(27174573) },
-  { label: "Jewellery", count: "150+ pieces", href: "/collections/accessories?type=Jewellery", image: pexels(19564918) },
+  { label: "Jewellery", count: "150+ pieces", href: "/collections/accessories?type=Jewellery", image: pexels(28347073) },
   { label: "Watches", count: "30+ styles", href: "/collections/accessories?type=Watches", image: pexels(35991456) },
   { label: "Skincare", count: "40+ formulas", href: "/collections/beauty?type=Skincare", image: pexels(8101534) },
   { label: "Fragrance", count: "18 scents", href: "/collections/beauty?type=Fragrance", image: pexels(32645088) },

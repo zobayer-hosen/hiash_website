@@ -2,16 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn, pexels } from "@/lib/utils";
-import { Reveal } from "@/components/ui/reveal";
+import { Parallax } from "@/components/motion/effects";
+import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 const tiles = [
   {
-    eyebrow: "Jewellery",
-    title: "Pearls & quiet gold",
+    eyebrow: "Bridal jewellery",
+    title: "Heirloom gold",
     href: "/collections/accessories?type=Jewellery",
-    image: pexels(9429420),
-    alt: "Woman wearing elegant pearl earrings and a pearl necklace",
+    image: pexels(28347073),
+    alt: "Ornate gold bridal jewellery set displayed on a velvet stand",
   },
   {
     eyebrow: "Bags",
@@ -40,20 +41,18 @@ export function AccessoriesEditorial() {
               Accessories that <em className="text-rose-500 italic">complete</em> the story
             </>
           }
-          description="Statement jewellery, structured bags and sunglasses — chosen to sit beautifully beside a saree or a slip dress."
+          description="Bridal jewellery, structured bags and sunglasses — chosen to sit beautifully beside a lehenga or a slip dress."
           align="center"
         />
         <div className="grid gap-5 md:grid-cols-3 md:pb-14">
           {tiles.map((tile, index) => (
-            <Reveal key={tile.title} delay={index * 120} className={cn(index === 1 && "md:translate-y-14")}>
+            <Reveal key={tile.title} delay={index * 140} y={50} className={cn(index === 1 && "md:translate-y-14")}>
               <Link href={tile.href} className="group relative block aspect-[3/4] overflow-hidden bg-sand">
-                <Image
-                  src={tile.image}
-                  alt={tile.alt}
-                  fill
-                  sizes="(min-width: 768px) 32vw, 100vw"
-                  className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-luxe)] group-hover:scale-105"
-                />
+                <Parallax offset={30} className="absolute -inset-y-10 inset-x-0">
+                  <div className="relative h-full w-full transition-transform duration-[1.4s] ease-[var(--ease-luxe)] group-hover:scale-105">
+                    <Image src={tile.image} alt={tile.alt} fill sizes="(min-width: 768px) 32vw, 100vw" className="object-cover" />
+                  </div>
+                </Parallax>
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/5 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 text-cream">
                   <div>
