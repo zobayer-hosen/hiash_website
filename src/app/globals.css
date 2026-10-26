@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Hiash design tokens
+   Rose shades are sampled from the logo (#D47E86 ink, deeper mauve tagline).
+------------------------------------------------------------------- */
+@theme {
+  --color-ink: #221a1c;
+  --color-ink-soft: #3a2f31;
+  --color-cream: #fbf7f3;
+  --color-sand: #f4ede5;
+  --color-sand-dark: #e9dfd3;
+  --color-taupe: #6b5f61;
+  --color-mocha: #7a5a48;
+  --color-gold: #b8925a;
+  --color-wine: #5a2632;
+  --color-wine-dark: #451c26;
+
+  --color-rose-50: #fdf5f6;
+  --color-rose-100: #fbe8eb;
+  --color-rose-200: #f6d2d8;
+  --color-rose-300: #ecaab4;
+  --color-rose-400: #d47e86;
+  --color-rose-500: #c0626d;
+  --color-rose-600: #a34a57;
+  --color-rose-700: #843a47;
+  --color-rose-800: #66303a;
+  --color-rose-900: #4a222a;
+
+  --color-sage-50: #f2f4ef;
+  --color-sage-100: #e4e9df;
+  --color-sage-200: #cdd6c5;
+  --color-sage-500: #6f7f69;
+  --color-sage-700: #4a5745;
+
+  --color-peach-100: #f8e4d6;
+  --color-lilac-100: #ebe3f1;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.5s ease both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@theme inline {
+  --font-display: var(--font-cormorant), var(--font-taka), "Times New Roman", serif;
+  --font-sans: var(--font-jost), var(--font-taka), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: var(--color-rose-200);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose-500);
+    outline-offset: 3px;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-rose-600);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Scroll reveal — toggled by <Reveal> */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.8s var(--ease-luxe),
+      transform 0.8s var(--ease-luxe);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
